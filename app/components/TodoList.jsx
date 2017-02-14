@@ -11,7 +11,7 @@ var TodoList = React.createClass({
         //track. Also the ...(spread operator) 'spreads' all the attr from the
         //todo object as props to the Todo component.
         return (
-          <Todo key={todo.id} {...todo}/>
+          <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
         );
       });
     };
