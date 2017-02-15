@@ -1,6 +1,6 @@
 var expect = require('expect');
 
-var TodoAPI = require('todoAPI');
+var TodoAPI = require('TodoAPI');
 
 describe('todoAPI', () => {
   //mocha lifecycle methods that runs before each test
@@ -51,6 +51,37 @@ describe('todoAPI', () => {
 
       var actualTodos = TodoAPI.getTodos();
       expect(actualTodos).toEqual(todos);
+    });
+  });
+
+  describe('filterTodos', () => {
+    var todos =
+    [
+      {
+        id: 1,
+        text: "hola",
+        completed: true
+      },
+      {
+        id: 2,
+        text: "hdfdsfdsfdsfdsfola",
+        completed: false
+      },
+      {
+        id: 3,
+        text: "hola",
+        completed: true
+      },
+  ];
+
+    it('should return all items if showCompleted is true', () => {
+      var filterTodos = TodoAPI.filterTodos(todos, true, '');
+      expect(filterTodos.length).toBe(3);
+    });
+
+    it('should return all items if showCompleted is true', () => {
+      var filterTodos = TodoAPI.filterTodos(todos, false, '');
+      expect(filterTodos.length).toBe(1);
     });
   });
 });
