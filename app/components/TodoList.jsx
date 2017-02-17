@@ -5,6 +5,11 @@ var TodoList = React.createClass({
   render: function() {
     var {todos} = this.props;
     var renderTodos = () => {
+      if (todos.length === 0) {
+        return (
+          <p className="container__message">Nothing to do</p>
+        );
+      }
       return todos.map((todo) => {
         //when creating several items while going throu a list you need to
         //provide a key or unique identifier for each so react knows how to keep
