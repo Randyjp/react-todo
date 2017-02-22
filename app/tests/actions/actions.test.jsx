@@ -34,9 +34,9 @@ describe('actions', () => {
   it('should generate toggle todo action', () => {
     var action = {
       type: 'TOGGLE_TODO',
-      id: 2
+      id: '2'
     };
-    var res = actions.toggleTodo(2);
+    var res = actions.toggleTodo('2');
 
     expect(res).toEqual(action);
   });
