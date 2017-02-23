@@ -1,7 +1,9 @@
 var React = require('react');
-var Todo = require('Todo');
+//connect let's the componets specify which date from the state they want to access
+var {connect} = require('react-redux');
+import Todo from 'Todo';
 
-var TodoList = React.createClass({
+export var TodoList = React.createClass({
   render: function() {
     var {todos} = this.props;
     var renderTodos = () => {
@@ -16,7 +18,7 @@ var TodoList = React.createClass({
         //track. Also the ...(spread operator) 'spreads' all the attr from the
         //todo object as props to the Todo component.
         return (
-          <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+          <Todo key={todo.id} {...todo}/>
         );
       });
     };
@@ -28,4 +30,12 @@ var TodoList = React.createClass({
   }
 });
 
-module.exports = TodoList;
+
+//this will set the returned object in the props for our components
+export default connect(
+  (state) => {
+    return {
+      todos: state.todos
+    };
+  }
+)(TodoList);

@@ -1,11 +1,13 @@
 var React = require('react');
 var ReactDom = require('react-dom');
+var {Provider} = require('react-redux');
 var expect = require('expect');
 var $ = require('jQuery');
 var TestUtils = require('react-addons-test-utils');
 
-var TodoList = require('TodoList');
-var Todo = require('Todo');
+import {configure} from 'configureStore';
+import ConnectedTodoList, {TodoList} from 'TodoList';
+import ConnectedTodo, {Todo} from 'Todo';
 
 describe('TodoList', () => {
   it('should exist', () => {
@@ -16,17 +18,31 @@ describe('TodoList', () => {
     var todos = [
       {
         id: 1,
-        text: 'do something'
+        text: 'do something',
+        completed: false,
+        completedAt: undefined,
+        createdAt: 500
       },
       {
         id: 2,
-        text: 'check mail'
+        text: 'check mail',
+        completed: false,
+        completedAt: undefined,
+        createdAt: 500
       }
     ];
 
-    var todoList = TestUtils.renderIntoDocument(<TodoList todos={todos}/>);
+    var store = configure({
+      todos
+    });
+    var provider = TestUtils.renderIntoDocument(
+      <Provider store={store}>
+        <ConnectedTodoList/>
+      </Provider>
+    );
+    var todoList = TestUtils.scryRenderedComponentsWithType(provider, ConnectedTodoList)[0];
     //let's you check how many of a given component are rendered in another component
-    var todosComponents = TestUtils.scryRenderedComponentsWithType(todoList, Todo);
+    var todosComponents = TestUtils.scryRenderedComponentsWithType(todoList, ConnectedTodo);
 
     expect(todosComponents.length).toBe(todos.length);
   });

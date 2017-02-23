@@ -1,9 +1,11 @@
 var React = require('react');
+var {connect} = require('react-redux');
 var moment = require('moment');
+var actions = require('actions');
 
-var Todo = React.createClass({
+export var Todo = React.createClass({
   render: function() {
-    var {text, id, completed, createdAt, completedAt} = this.props;
+    var {text, id, completed, createdAt, completedAt, dispatch} = this.props;
     var todoClassName = completed ? 'todo todo__completed' : 'todo';
     var renderDate = () => {
       var message = 'Created ';
@@ -18,7 +20,8 @@ var Todo = React.createClass({
 
     return (
       <div className={todoClassName} onClick={()=>{
-        this.props.onToggle(id);
+        // this.props.onToggle(id);
+        dispatch(actions.toggleTodo(id));
       }}>
       <div>
         <input type="checkbox" checked={completed}/>
@@ -33,4 +36,9 @@ var Todo = React.createClass({
   }
 });
 
-module.exports = Todo;
+//by using connect we get access to things like dispatch
+//the default export is what you get when you do: =>
+// var somever = require('todo'), in this case the component passed to connect
+//But you also want the raw react componet for testing purpuses that's why on top
+//we added the keyword export to the component
+export default connect()(Todo);
