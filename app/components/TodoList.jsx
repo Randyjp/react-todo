@@ -2,17 +2,18 @@ var React = require('react');
 //connect let's the componets specify which date from the state they want to access
 var {connect} = require('react-redux');
 import Todo from 'Todo';
+var TodoAPI = require('TodoAPI');
 
 export var TodoList = React.createClass({
   render: function() {
-    var {todos} = this.props;
+    var {todos, showCompleted, searchText} = this.props;
     var renderTodos = () => {
       if (todos.length === 0) {
         return (
           <p className="container__message">Nothing to do</p>
         );
       }
-      return todos.map((todo) => {
+      return TodoAPI.filterTodos(todos,showCompleted, searchText).map((todo) => {
         //when creating several items while going throu a list you need to
         //provide a key or unique identifier for each so react knows how to keep
         //track. Also the ...(spread operator) 'spreads' all the attr from the
@@ -34,8 +35,6 @@ export var TodoList = React.createClass({
 //this will set the returned object in the props for our components
 export default connect(
   (state) => {
-    return {
-      todos: state.todos
-    };
+    return state;
   }
 )(TodoList);
