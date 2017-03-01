@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 //will be set to 'production on heroku'
-process.env.NODE_ENV = process.env.NODE_ENV || 'develoment';
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
     entry: [
