@@ -4,8 +4,9 @@
   "description": "Simple react weather app",
   "main": "index.js",
   "scripts": {
-    "test": "karma start",
-    "start": "node server.js"
+    "test": "NODE_ENV=test karma start",
+    "build": "webpack",
+    "start": "npm run build && node server.js"
   },
   "author": "Randy Perez",
   "license": "MIT",
@@ -14,9 +15,7 @@
     "express": "^4.14.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "react-router": "^2.0.0"
-  },
-  "devDependencies": {
+    "react-router": "^2.0.0",
     "babel-core": "^6.5.1",
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.5.0",
@@ -28,13 +27,6 @@
     "firebase": "^3.6.10",
     "foundation-sites": "^6.3.0",
     "jquery": "^3.1.1",
-    "karma": "^1.4.1",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-mocha": "^1.3.0",
-    "karma-mocha-reporter": "^2.2.2",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^2.0.2",
-    "mocha": "^3.2.0",
     "moment": "^2.17.1",
     "node-sass": "^4.4.0",
     "node-uuid": "^1.4.7",
@@ -47,5 +39,14 @@
     "script-loader": "^0.7.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.12.13"
+  },
+  "devDependencies": {
+    "karma": "^1.4.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.2",
+    "mocha": "^3.2.0"
   }
 }
