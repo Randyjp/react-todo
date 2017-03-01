@@ -2,7 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
 
-export var Addtodo = React.createClass({
+export var AddTodo = React.createClass({
   handleSubmit: function (e) {
     e.preventDefault();
     var {dispatch} = this.props;
@@ -27,4 +27,4 @@ export var Addtodo = React.createClass({
   }
 });
 
-export default connect()(Addtodo);
+export default connect()(AddTodo);

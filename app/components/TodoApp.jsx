@@ -3,7 +3,7 @@ var React = require('react');
 var moment = require('moment');
 
 import TodoList from 'TodoList';
-import Addtodo from 'Addtodo';
+import AddTodo from 'AddTodo';
 import TodoSearch from 'TodoSearch';
 
 var TodoApp = React.createClass({
@@ -17,7 +17,7 @@ var TodoApp = React.createClass({
             <div className="container">
               <TodoSearch/>
               <TodoList/>
-              <Addtodo/>
+              <AddTodo/>
             </div>
           </div>
         </div>
