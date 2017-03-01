@@ -10,16 +10,8 @@ var actions = require('actions');
 var store = require('configureStore').configure();
 var TodoAPI= require('TodoApi');
 
-// import './../playground/firebase/index';
 
-store.subscribe(() => {
-	var state = store.getState();
-	console.log('New state', state);
-	TodoAPI.setTodos(state.todos);
-});
-
-var initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+store.dispatch(actions.startAddTodos());
 
 //load foundation
 $(document).foundation(); //fire-up foundation

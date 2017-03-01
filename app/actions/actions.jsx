@@ -50,6 +50,26 @@ export var addTodo = (todo) => {
   };
 };
 
+export var startAddTodos = () => {
+  return(dispatch, getState) => {
+    return fireBaseRef.child('todos').once('value').then((snapshot) => {
+      var todosFirebase = snapshot.val() || {};
+      var todoKeys = Object.keys(todosFirebase);
+
+      var todos = todoKeys.map((key) => {
+        return {
+          ...todosFirebase[key],
+          id: key
+        }
+      });
+      
+      dispatch(addTodos(todos));
+    }, (e) => {
+      console.log("Error happened", e);
+    });
+  }
+};
+
 export var updateTodo = (id, updates) => {
   return {
     type: 'UPDATE_TODO',

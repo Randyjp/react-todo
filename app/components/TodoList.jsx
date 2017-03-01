@@ -8,12 +8,16 @@ export var TodoList = React.createClass({
   render: function() {
     var {todos, showCompleted, searchText} = this.props;
     var renderTodos = () => {
-      if (todos.length === 0) {
+      
+      var filtered = TodoAPI.filterTodos(todos, showCompleted, searchText);
+
+      if (filtered.length === 0) {
         return (
           <p className="container__message">Nothing to do</p>
         );
       }
-      return TodoAPI.filterTodos(todos,showCompleted, searchText).map((todo) => {
+
+      return filtered.map((todo) => {
         //when creating several items while going throu a list you need to
         //provide a key or unique identifier for each so react knows how to keep
         //track. Also the ...(spread operator) 'spreads' all the attr from the
