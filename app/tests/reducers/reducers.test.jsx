@@ -45,7 +45,7 @@ describe('Reducers', () => {
       };
 
       var state = {
-        uid: 'dsfnlkdsfjsldkfds';
+        uid: 'dsfnlkdsfjsldkfds'
       };
 
       var res = reducers.authReducer(df(state), df(action));
