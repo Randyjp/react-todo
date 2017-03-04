@@ -96,6 +96,32 @@ describe('Reducers', () => {
       expect(res[0].text).toEqual(todo[0].text);
     });
 
+    it('should wite todos on LOGOUT', () => {
+      var todo = [
+        {
+          id: 1,
+          text: 'some text',
+          completed: false,
+          createdAt: 'sdfdsfs',
+          completedAt: undefined
+        },
+        {
+          id: 2,
+          text: 'some text 2',
+          completed: true,
+          createdAt: '44443cff',
+          completedAt: 123213
+        }
+      ];
+
+      var action = {
+        type: 'LOGOUT',
+      };
+      var res = reducers.todosReducer(df(todo), df(action));
+
+      expect(res).toEqual([]);
+    });
+
     it('should add exisiting todos', () => {
       var todos = [{
         id: '111',
