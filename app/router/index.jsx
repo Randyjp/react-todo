@@ -24,7 +24,7 @@ var redirectIfLoggedIn = (nextState, replace, next) => {
 export default (
   <Router history={hashHistory}>
     <Route path='/'>
-      <Route path="todos" component={TodoApp} onEnter={redirectIfLoggedIn}/>
+      <Route path="todos" component={TodoApp} onEnter={requireLogin}/>
       <IndexRoute component={Login} onEnter={redirectIfLoggedIn}/>
     </Route>
   </Router>

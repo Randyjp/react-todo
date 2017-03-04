@@ -1,13 +1,34 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 var expect = require('expect');
-import firebase, {fireBaseRef} from 'app/firebase/';
+import firebase, {firebaseRef} from 'app/firebase/';
 
 var actions = require('actions');
 
 var createMockStore = configureMockStore([thunk]);
 
 describe('actions', () => {
+  it('should generate login action', () => {
+      var action = {
+        type: 'LOGIN',
+        uid: 'll222333ffftt'
+      };
+
+      var res = actions.login(action.uid);
+
+      expect(res).toEqual(action);
+  });
+
+  it('should generate logout action', () => {
+      var action = {
+        type: 'LOGOUT',
+      };
+
+      var res = actions.logout(action.uid);
+
+      expect(res).toEqual(action);
+  });
+
   it('should generate search text action', () => {
     var action = {
       type: 'SET_SEARCH_TEXT',
@@ -91,10 +112,10 @@ describe('actions', () => {
     var testTodoRef;
     //mocha code that it is used to set something before tests
     beforeEach((done) => {
-      var todosRef = fireBaseRef.child('todos');
+      var todosRef = firebaseRef.child('todos');
 
       todosRef.remove().then(() => {
-        testTodoRef = fireBaseRef.child('todos').push();
+        testTodoRef = firebaseRef.child('todos').push();
 
         return testTodoRef.set({
           text: 'Something to do',
