@@ -30,8 +30,10 @@ export var startAddTodo = (text) => {
         createdAt: moment().unix(),
         completedAt: null
     };
+    //getState returns the current state of the application(AKA the redux store)
+    var uid = getState().auth.uid;
     //push data to firebase
-    var todoRef = firebaseRef.child('todos').push(todo);
+    var todoRef = firebaseRef.child(`users/${uid}/todos`).push(todo);
     //added to the redux store so the application can render it
     return todoRef.then(() => {
       //pass it to the addTodo action, this one renders it to the DOM
@@ -52,7 +54,10 @@ export var addTodo = (todo) => {
 
 export var startAddTodos = () => {
   return(dispatch, getState) => {
-    return firebaseRef.child('todos').once('value').then((snapshot) => {
+    //getState returns the current state of the application(AKA the redux store)
+    var uid = getState().auth.uid;
+
+    return firebaseRef.child(`users/${uid}/todos`).once('value').then((snapshot) => {
       var todosFirebase = snapshot.val() || {};
       var todoKeys = Object.keys(todosFirebase);
 
@@ -80,7 +85,9 @@ export var updateTodo = (id, updates) => {
 
 export var startToggleTodo = (id, completed) => {
   return (dispatch, getState) => {
-    var todoRef = firebaseRef.child(`todos/${id}`);
+    //getState returns the current state of the application(AKA the redux store)
+    var uid = getState().auth.uid;
+    var todoRef = firebaseRef.child(`users/${uid}/todos/${id}`);
     var updates = {
       completed,
       completedAt: completed ? moment().unix() : null
