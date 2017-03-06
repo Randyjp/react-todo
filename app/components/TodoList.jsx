@@ -1,14 +1,14 @@
-var React = require('react');
+import React from 'react';
 //connect let's the componets specify which date from the state they want to access
-var {connect} = require('react-redux');
+import {connect} from 'react-redux';
 import Todo from 'Todo';
-var TodoAPI = require('TodoAPI');
+import TodoAPI from 'TodoAPI';
 
-export var TodoList = React.createClass({
-  render: function() {
+export class TodoList extends React.Component {
+  render () {
     var {todos, showCompleted, searchText} = this.props;
     var renderTodos = () => {
-      
+
       var filtered = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
       if (filtered.length === 0) {
@@ -33,8 +33,7 @@ export var TodoList = React.createClass({
       </div>
     );
   }
-});
-
+}
 
 //this will set the returned object in the props for our components
 export default connect(
