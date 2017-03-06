@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {hashHistory} from 'react-router';
 
-import actions from 'actions';
+import * as actions from 'actions';
 var store = require('configureStore').configure();
 import firebase from 'app/firebase/';
 import router from 'app/router/';
