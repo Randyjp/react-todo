@@ -17,7 +17,7 @@ describe('todoAPI', () => {
     [
       {
         id: 1,
-        text: "hola",
+        text: "Hola",
         completed: true
       },
       {
@@ -52,11 +52,16 @@ describe('todoAPI', () => {
       expect(filterTodos.length).toBe(3);
     });
 
-    it('should returns all todos when searchText is empty', () => {
+    it('should filter todos by searchText', () => {
       var searchText = 'hola';
       var filterTodos = TodoAPI.filterTodos(todos, true, searchText);
       expect(filterTodos.length).toBe(1);
-      expect(filterTodos[0].text).toEqual(searchText);
+    });
+
+    it('should filter todos by uppercase searchText', () => {
+      var searchText = 'Hola';
+      var filterTodos = TodoAPI.filterTodos(todos, true, searchText);
+      expect(filterTodos.length).toBe(1);
     });
   });
 });
