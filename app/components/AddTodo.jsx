@@ -7,7 +7,6 @@ export class AddTodo extends React.Component {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   handleSubmit (e) {
     e.preventDefault();
     var {dispatch} = this.props;

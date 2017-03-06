@@ -1,10 +1,10 @@
-var React = require('react');
-var {connect} = require('react-redux');
-var moment = require('moment');
-var actions = require('actions');
+import React from 'react';
+import {connect} from 'react-redux';
+import moment from 'moment';
+import * as actions from 'actions';
 
-export var Todo = React.createClass({
-  render: function() {
+export class Todo extends React.Component {
+  render () {
     var {text, id, completed, createdAt, completedAt, dispatch} = this.props;
     var todoClassName = completed ? 'todo todo__completed' : 'todo';
     var renderDate = () => {
@@ -23,18 +23,17 @@ export var Todo = React.createClass({
         // this.props.onToggle(id);
         dispatch(actions.startToggleTodo(id, !completed));
       }}>
-      <div>
-        <input type="checkbox" checked={completed}/>
-      </div>
-      <div>
-        <p>{text}</p>
-        <p className="todo__subtext">{renderDate()}</p>
-      </div>
-
+        <div>
+          <input type="checkbox" checked={completed}/>
+        </div>
+        <div>
+          <p>{text}</p>
+          <p className="todo__subtext">{renderDate()}</p>
+        </div>
       </div>
     );
   }
-});
+}
 
 //by using connect we get access to things like dispatch
 //the default export is what you get when you do: =>
